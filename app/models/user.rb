@@ -5,14 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname, presence: true
-  # validates :email, presence: true
-  # validates :encrypted_password, presence: true
   validates :surname, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
   validates :surname_katakana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
   validates :giben_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ }
   validates :giben_name_katakana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
   validates :dete_of_bith, presence: true
-  # validates :password, length: { maximum: 140 }
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX, message: 'is invalid. Include both letters and numbers'
 end

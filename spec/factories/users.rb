@@ -4,7 +4,7 @@ FactoryBot.define do
     email                 { Faker::Internet.free_email }
     password              { 'aaa000000' }
     password_confirmation { password }
-    surname { '山田' }
+    surname               { '山田' }
     surname_katakana      { 'ヤマダ' }
     giben_name            { '太郎' }
     giben_name_katakana { 'タロウ' }
