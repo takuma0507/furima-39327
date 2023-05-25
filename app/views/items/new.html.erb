@@ -6,10 +6,9 @@
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, url: "/items", local: true do |f| %>
-     <%# <%= form_with url: "/items", method: :get, local: true do |f|  %>
-     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにする。%>
+     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにした。%>
      <%= render 'shared/error_messages', model: f.object %>
-     <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにする。%>
+     <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにした。%>
 
     <%# 商品画像 %>
     <div class="img-upload">
@@ -17,7 +16,6 @@
         商品画像
         <span class="indispensable">必須</span>
       </div>
-      <%# <%= image_tag item.image, if item.image.attached? %>
       <div class="click-upload">
         <p>
           クリックしてファイルをアップロード
