@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :item do
+    association :user
 
     after(:build) do |item|
       item.image.attach(io: File.open('public/apple-touch-icon-precomposed.png'), filename: 'apple-touch-icon-precomposed.png')

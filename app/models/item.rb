@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   has_one_attached :image
+  belongs_to :user
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :item_category
@@ -16,7 +17,7 @@ class Item < ApplicationRecord
   validates :delivery_money_id, presence: true
   validates :send_region_id, presence: true
   validates :send_day_id, presence: true, numericality: { other_than: 1 }
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }, format: { with: /\A[0-9]+\z/ } 
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, only_integer: true }
   validates :item_category_id, numericality: { other_than: 1 } 
   validates :item_situation_id, numericality: { other_than: 1 } 
   validates :delivery_money_id, numericality: { other_than: 1 } 

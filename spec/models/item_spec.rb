@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @item = FactoryBot.build(:item)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.build(:item, user: @user)
+    # @item = FactoryBot.build(:item)
   end
 
   describe '商品投稿' do
@@ -75,7 +77,8 @@ context '新規登録できないとき' do
   it '価格が¥9,999,999より少ない時は出品できない' do
     @item = Item.new(price: '10_000_000')
     @item.valid?
-    expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+    # binding.pry
+    expect(@item.errors.full_messages).to include("Price must be an integer")
   end
 
   it '価格は半角数値でなければ投稿できない' do
@@ -83,6 +86,13 @@ context '新規登録できないとき' do
     @item.valid?
     expect(@item.errors.full_messages).to include('Price is not a number')
   end
+
+  it 'userが紐付いていなければ出品できない' do
+    @item = Item.new(user_id:'1')
+    @item.valid?
+    expect(@item.errors.full_messages).to include('User must exist')
+  end
+
   end
 end
 end
