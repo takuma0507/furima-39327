@@ -2,6 +2,10 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :user
 
+  def sold_out?
+    item = item
+  end
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :item_category
   belongs_to :item_situation
