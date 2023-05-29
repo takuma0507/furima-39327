@@ -65,26 +65,3 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 end
-
-
-
-
-
-
-
-
-# def check_owner
-  # unless current_user == @item.user
-    # redirect_to root_path, notice: "You are not authorized to edit this item."
-  # end
-# end
-
-# def authenticate_user!
-  # unless user_signed_in?
-    # redirect_to new_user_session_path, alert: "ログインが必要です"
-  # end
-# end
-
-# if @item.sold?
-  # redirect_to root_path, alert: "この商品は既に売却されています"
-# end
