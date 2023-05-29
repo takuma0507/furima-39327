@@ -29,13 +29,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
       render 'edit'
     end
-    # @item = Item.new(item_params)
   end
 
 
@@ -53,15 +51,5 @@ class ItemsController < ApplicationController
     unless current_user == @item.user
       redirect_to root_path
     end
-  end
-
-  def authenticate_user!
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    end
-  end
-
-  if @item.sold?
-    redirect_to root_path
   end
 end
