@@ -128,20 +128,20 @@
     </div>
     <ul class='item-lists'>
      
-      <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開させた %>
+      <%# 商品インスタンス変数の中身の展開 %>
     <% @items.each do |item| %>
       <li class='list'>
         <%= link_to item_path(item), method: :get do %>
         <div class='item-img-content'>
-          <%# <%= image_tag "item-sample.png", class: "item-img" %> 
-          <%= image_tag item.image, class: "item-img" if item.image.attached? %>
-          <%# 商品が売れていればsold outを表示させた %>
-        <% if item.sold_out? %>
+
+          <%# //商品売却済みsold out表示 %>
+        <% if item.order.present? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# //商品が売れていればsold outを表示させた %>
         <% end %>
+         <%= image_tag item.image, class: "item-img" if item.image.attached? %>
+          <%# //商品売却済みsold out表示 %>
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -158,10 +158,8 @@
         <% end %>
       </li>
      <% end %>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開させた %>
+      <%# 商品インスタンス変数の中身の展開 %>
 
-      <%# 商品がない場合は以下のダミー商品が表示された %>
-      <%# 商品がある場合は表示されないようにした %>
      <% if @items.empty? %>
       <li class='list'>
         <%= link_to '#' do %>
@@ -181,8 +179,6 @@
         <% end %>
       <% end %>
       </li>
-      <%# //商品がある場合は表示させた %>
-      <%# //商品がない場合は以下のダミー商品が表示されるにした %>
     </ul>
   </div>
   <%# /商品一覧 %>

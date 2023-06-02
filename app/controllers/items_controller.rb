@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :check_owner, only: [:edit, :update]
+  before_action :sold_edit, only: :edit
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -53,6 +54,12 @@ class ItemsController < ApplicationController
 
   def check_owner
     unless current_user == @item.user
+      redirect_to root_path
+    end
+  end
+
+  def sold_edit
+    if @item.order.present?
       redirect_to root_path
     end
   end
