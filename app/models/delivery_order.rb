@@ -1,4 +1,4 @@
-class DeliveryOrder 
+class DeliveryOrder
 
     include ActiveModel::Model
     attr_accessor :user_id, :item_id, :post_code, :send_region_id, :municipality, :address, :building_name, :tel, :token
