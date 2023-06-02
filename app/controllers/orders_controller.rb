@@ -1,4 +1,4 @@
-class OrdersController < ApplicationController
+class OrdersController < ApplicationController 
   before_action :check_own_item, only: [:index]
   before_action :sold_out
   before_action :authenticate_user!
