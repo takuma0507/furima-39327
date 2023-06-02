@@ -4,7 +4,6 @@ RSpec.describe Item, type: :model do
   before do
     @user = FactoryBot.create(:user)
     @item = FactoryBot.build(:item, user: @user)
-    # @item = FactoryBot.build(:item)
   end
 
   describe '商品投稿' do
@@ -13,42 +12,43 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
     end
-context '新規登録できないとき' do
-  it '商品画像が空だと投稿できない' do
-    @item.image = nil
-    @item.valid?
-    expect(@item.errors.full_messages).to include("Image can't be blank")
-  end
 
-  it '商品名が空だと投稿できない' do
-    @item = Item.new(item: '')
-    @item.valid?
-    expect(@item.errors.full_messages).to include("Item can't be blank")
-  end
+    context '新規登録できないとき' do
+      it '商品画像が空だと投稿できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
 
-  it '商品説明が空だと投稿できない' do
-    @item = Item.new(item_comment: '')
-    @item.valid?
-    expect(@item.errors.full_messages).to include("Item comment can't be blank")
-  end
+      it '商品名が空だと投稿できない' do
+        @item = Item.new(item: '')
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item can't be blank")
+      end
 
-  it 'カテゴリー情報が空だと投稿できない' do
-    @item = Item.new(item_category_id: '')
-    @item.valid?
-    expect(@item.errors.full_messages).to include("Item category can't be blank")
-  end
+      it '商品説明が空だと投稿できない' do
+        @item = Item.new(item_comment: '')
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item comment can't be blank")
+      end
 
-  it '商品状態が空だと投稿できない' do
-    @item = Item.new(item_situation_id: '')
-    @item.valid?
-    expect(@item.errors.full_messages).to include("Item situation can't be blank")
-  end
+      it 'カテゴリー情報が空だと投稿できない' do
+        @item = Item.new(item_category_id: '')
+        @item.valid?
+       expect(@item.errors.full_messages).to include("Item category can't be blank")
+      end
 
-  it '配送料の負担が空だと投稿できない' do
-    @item = Item.new(delivery_money_id: '')
-    @item.valid?
-    expect(@item.errors.full_messages).to include("Delivery money can't be blank")
-  end
+      it '商品状態が空だと投稿できない' do
+        @item = Item.new(item_situation_id: '')
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item situation can't be blank")
+      end
+
+      it '配送料の負担が空だと投稿できない' do
+        @item = Item.new(delivery_money_id: '')
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery money can't be blank")
+      end
 
   it '発送元の情報が空だと投稿できない' do
     @item = Item.new(send_region_id: '')

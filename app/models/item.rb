@@ -5,13 +5,14 @@ class Item < ApplicationRecord
   def sold_out?
     item = item
   end
-
+  
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :item_category
   belongs_to :item_situation
   belongs_to :delivery_money
   belongs_to :send_region
   belongs_to :send_day
+  has_one :order
 
   validates :image, presence: true
   validates :item, presence: true
@@ -27,5 +28,4 @@ class Item < ApplicationRecord
   validates :delivery_money_id, numericality: { other_than: 1 } 
   validates :send_region_id, numericality: { other_than: 1 } 
   validates :send_day_id, numericality: { other_than: 1 } 
-  # validates :send_region_id, presence: true
 end
