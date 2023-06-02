@@ -1,19 +1,13 @@
 class OrdersController < ApplicationController
   before_action :check_own_item, only: [:index]
   before_action :sold_out
+  before_action :authenticate_user!
 
   def index
-    @deliveryorder = DeliveryOrder.new
-    @item = Item.find(params[:item_id])
-
-  end
-
-  def new
     @deliveryorder = DeliveryOrder.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @deliveryorder = DeliveryOrder.new(deliveryorder_params)
     if @deliveryorder.valid?
       pay_item
