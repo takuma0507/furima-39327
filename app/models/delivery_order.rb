@@ -1,7 +1,7 @@
 class DeliveryOrder < ApplicationRecord
 
     include ActiveModel::Model
-    attr_accessor :user_id, :item_id, :post_code, :send_region_id, :municipality, :address, :building_name, :tel, :order_id, :token
+    attr_accessor :user_id, :item_id, :post_code, :send_region_id, :municipality, :address, :building_name, :tel, :token
     
     with_options presence: true do
       validates :post_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'Please enter a valid postal code (e.g., 123-4567)' }

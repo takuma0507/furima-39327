@@ -11,7 +11,6 @@ class OrdersController < ApplicationController
     @deliveryorder = DeliveryOrder.new(deliveryorder_params)
     if @deliveryorder.valid?
       pay_item
-      @item.save
       @deliveryorder.save
       redirect_to root_path
     else
@@ -33,7 +32,7 @@ class OrdersController < ApplicationController
   private
 
   def deliveryorder_params
-    params.require(:delivery_order).permit(:post_code, :send_region_id, :municipality, :address, :building_name, :tel).merge(user_id: current_user.id, order_id: params[:order_id], item_id: params[:item_id], token: params[:token])
+    params.require(:delivery_order).permit(:post_code, :send_region_id, :municipality, :address, :building_name, :tel).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
 
