@@ -21,11 +21,12 @@ class Item < ApplicationRecord
   validates :item_situation_id, presence: true
   validates :delivery_money_id, presence: true
   validates :send_region_id, presence: true
-  validates :send_day_id, presence: true, numericality: { other_than: 1 }
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, only_integer: true }
-  validates :item_category_id, numericality: { other_than: 1 } 
-  validates :item_situation_id, numericality: { other_than: 1 } 
-  validates :delivery_money_id, numericality: { other_than: 1 } 
-  validates :send_region_id, numericality: { other_than: 1 } 
-  validates :send_day_id, numericality: { other_than: 1, message: "send_day must be other than 1" } 
+  validates :send_day_id, presence: true, numericality: { other_than: 1, message: "を入力してください"}
+  # validates :price, presence: true,
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, only_integer: true, message: "は300円以上9,999,999以下で入力してください" }
+  validates :item_category_id, numericality: { other_than: 1, message: "を選択してください" } 
+  validates :item_situation_id, numericality: { other_than: 1, message: "を選択してください" } 
+  validates :delivery_money_id, numericality: { other_than: 1, message: "を選択してください" } 
+  validates :send_region_id, numericality: { other_than: 1, message: "を選択してください" } 
+  validates :send_day_id, numericality: { other_than: 1, message: "を選択してください" } 
 end

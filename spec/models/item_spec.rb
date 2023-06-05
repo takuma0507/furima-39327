@@ -17,87 +17,91 @@ RSpec.describe Item, type: :model do
       it '商品画像が空だと投稿できない' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Image can't be blank")
+        # binding.pry
+        expect(@item.errors.full_messages).to include("画像を入力してください")
       end
 
       it '商品名が空だと投稿できない' do
         @item = Item.new(item: '')
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item can't be blank")
+        # binding.pry
+        expect(@item.errors.full_messages).to include("商品名を入力してください")
       end
 
       it '商品説明が空だと投稿できない' do
         @item = Item.new(item_comment: '')
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item comment can't be blank")
+        expect(@item.errors.full_messages).to include("商品の説明を入力してください")
       end
 
       it 'カテゴリー情報が空だと投稿できない' do
         @item = Item.new(item_category_id: '')
         @item.valid?
-       expect(@item.errors.full_messages).to include("Item category can't be blank")
+       expect(@item.errors.full_messages).to include("カテゴリーを入力してください")
       end
 
       it '商品状態が空だと投稿できない' do
         @item = Item.new(item_situation_id: '')
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item situation can't be blank")
+        expect(@item.errors.full_messages).to include("商品の状態を入力してください")
       end
 
       it '配送料の負担が空だと投稿できない' do
         @item = Item.new(delivery_money_id: '')
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery money can't be blank")
+        # binding.pry
+        expect(@item.errors.full_messages).to include("配送料の負担を入力してください")
       end
 
   it '発送元の情報が空だと投稿できない' do
     @item = Item.new(send_region_id: '')
     @item.valid?
-    expect(@item.errors.full_messages).to include("Send region can't be blank")
+    expect(@item.errors.full_messages).to include("発送元の地域を入力してください")
   end
 
   it '発送までの日数が空だと投稿できない' do
     @item = Item.new(send_day_id: '')
     @item.valid?
-    expect(@item.errors.full_messages).to include("Send day can't be blank")
+    expect(@item.errors.full_messages).to include("発送までの日数を入力してください")
   end
 
   it '発送までの日数に1が選択されている場合は出品できない' do
     @item.send_day_id = '1'
     @item.valid?
-    binding.pry
-    expect(@item.errors.full_messages).to include("Send day must be other than 1")
+    # binding.pry
+    expect(@item.errors.full_messages).to include("発送までの日数を選択してください")
   end
 
   it '価格の情報が空だと投稿できない' do
     @item = Item.new(price: '')
     @item.valid?
-    expect(@item.errors.full_messages).to include("Price can't be blank")
+    expect(@item.errors.full_messages).to include("価格を入力してください")
   end
 
   it '価格が¥300より少ない時は出品できない' do
     @item = Item.new(price: '299')
     @item.valid?
-    expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+    expect(@item.errors.full_messages).to include("価格は300円以上9,999,999以下で入力してください")
   end
 
   it '価格が¥9,999,999より少ない時は出品できない' do
     @item = Item.new(price: '10_000_000')
     @item.valid?
     # binding.pry
-    expect(@item.errors.full_messages).to include("Price must be an integer")
+    expect(@item.errors.full_messages).to include("価格は300円以上9,999,999以下で入力してください")
   end
 
   it '価格は半角数値でなければ投稿できない' do
     @item = Item.new(price:'aびー')
     @item.valid?
-    expect(@item.errors.full_messages).to include('Price is not a number')
+    # binding.pry
+    expect(@item.errors.full_messages).to include("価格は300円以上9,999,999以下で入力してください")
   end
 
   it 'userが紐付いていなければ出品できない' do
     @item = Item.new(user_id:'1')
     @item.valid?
-    expect(@item.errors.full_messages).to include('User must exist')
+    expect(@item.errors.full_messages).to include("Userを入力してください")
   end
 
   end

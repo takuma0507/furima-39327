@@ -24,79 +24,79 @@ RSpec.describe DeliveryOrder, type: :model do
         it '郵便番号が空では購入できない' do
           @deliveryorder.post_code = ''
           @deliveryorder.valid?
-          expect(@deliveryorder.errors.full_messages).to include("Post code can't be blank")
+          expect(@deliveryorder.errors.full_messages).to include("Post codeを入力してください")
         end
         
         it '郵便番号は、「3桁ハイフン4桁」の半角文字列でなければ登録できない' do
           @deliveryorder.post_code = '1234'
           @deliveryorder.valid?
-          expect(@deliveryorder.errors.full_messages).to include("Post code Please enter a valid postal code (e.g., 123-4567)")
+          expect(@deliveryorder.errors.full_messages).to include("Post codePlease enter a valid postal code (e.g., 123-4567)")
         end
   
         it '都道府県が空では購入できない' do
           @deliveryorder.send_region_id = ' '
           @deliveryorder.valid?
-          expect(@deliveryorder.errors.full_messages).to include("Send region can't be blank")
+          expect(@deliveryorder.errors.full_messages).to include("Send regionを入力してください")
         end
 
         it '都道府県に1が選択されている場合は出品できない' do
           @deliveryorder.send_region_id = '1'
           @deliveryorder.valid?
-          expect(@deliveryorder.errors.full_messages).to include("Send region must be other than 1")
+          expect(@deliveryorder.errors.full_messages).to include("Send regionは1以外の値にしてください")
         end
   
         it '市区町村が空では購入できない' do
           @deliveryorder.municipality = ''
           @deliveryorder.valid?
-          expect(@deliveryorder.errors.full_messages).to include("Municipality can't be blank")
+          expect(@deliveryorder.errors.full_messages).to include("Municipalityを入力してください")
         end
   
         it '番地が空では購入できない' do
           @deliveryorder.address = ''
           @deliveryorder.valid?
-          expect(@deliveryorder.errors.full_messages).to include("Address can't be blank")
+          expect(@deliveryorder.errors.full_messages).to include("Addressを入力してください")
         end
 
         it '電話番号が空では購入できない' do
             @deliveryorder.tel = ''
             @deliveryorder.valid?
-            expect(@deliveryorder.errors.full_messages).to include("Tel can't be blank")
+            expect(@deliveryorder.errors.full_messages).to include("Telを入力してください")
         end
 
         it '電話番号が9桁以下では保存できない' do
           @deliveryorder.tel = '123456789' # 9桁の電話番号
           @deliveryorder.valid?
-          expect(@deliveryorder.errors.full_messages).to include("Tel Please enter between 10 and 11 digits")
+          expect(@deliveryorder.errors.full_messages).to include("Tel10桁から11桁の数字を入力してください")
         end
   
         it '電話番号が12桁以上では保存できない' do
           @deliveryorder.tel = '123456789123' # 12桁の電話番号
           @deliveryorder.valid?
-          expect(@deliveryorder.errors.full_messages).to include("Tel Please enter between 10 and 11 digits")
+          expect(@deliveryorder.errors.full_messages).to include("Tel10桁から11桁の数字を入力してください")
         end
 
         it '電話番号は半角数字以外が含まれている場合は購入できない' do
           @deliveryorder.tel = '090-1234'
           @deliveryorder.valid?
-          expect(@deliveryorder.errors.full_messages).to include("Tel Please enter between 10 and 11 digits")
+          expect(@deliveryorder.errors.full_messages).to include("Tel10桁から11桁の数字を入力してください")
         end
 
         it "tokenが空では購入できない" do
           @deliveryorder.token = nil
           @deliveryorder.valid?
-          expect(@deliveryorder.errors.full_messages).to include("Token can't be blank")
+          expect(@deliveryorder.errors.full_messages).to include("Tokenを入力してください")
         end
 
         it 'userが紐付いていなければ購入できない' do
           @deliveryorder.user_id = nil
           @deliveryorder.valid?
-          expect(@deliveryorder.errors.full_messages).to include("User can't be blank")
+          expect(@deliveryorder.errors.full_messages).to include("Userを入力してください")
         end
 
         it 'itemが紐付いていなければ購入できない' do
           @deliveryorder.item_id = nil
           @deliveryorder.valid?
-          expect(@deliveryorder.errors.full_messages).to include("Item can't be blank")
+          expect(@deliveryorder.errors.full_messages).to include("Itemを入力してください")
         end
     end
   end
