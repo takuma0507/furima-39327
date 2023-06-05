@@ -27,5 +27,5 @@ class Item < ApplicationRecord
   validates :item_situation_id, numericality: { other_than: 1 } 
   validates :delivery_money_id, numericality: { other_than: 1 } 
   validates :send_region_id, numericality: { other_than: 1 } 
-  validates :send_day_id, numericality: { other_than: 1 } 
+  validates :send_day_id, numericality: { other_than: 1, message: "send_day must be other than 1" } 
 end

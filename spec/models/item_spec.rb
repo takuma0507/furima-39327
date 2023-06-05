@@ -62,6 +62,13 @@ RSpec.describe Item, type: :model do
     expect(@item.errors.full_messages).to include("Send day can't be blank")
   end
 
+  it '発送までの日数に1が選択されている場合は出品できない' do
+    @item.send_day_id = '1'
+    @item.valid?
+    binding.pry
+    expect(@item.errors.full_messages).to include("Send day must be other than 1")
+  end
+
   it '価格の情報が空だと投稿できない' do
     @item = Item.new(price: '')
     @item.valid?
