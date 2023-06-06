@@ -30,8 +30,10 @@ ja:
         giben_name: 名
         giben_name_katakana: 名（カナ）
         dete_of_bith: 生年月日
+
     models:
       user: ユーザー
+
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。

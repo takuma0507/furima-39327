@@ -3,11 +3,11 @@ class DeliveryOrder
     include ActiveModel::Model
     attr_accessor :user_id, :item_id, :post_code, :send_region_id, :municipality, :address, :building_name, :tel, :token
     with_options presence: true do
-      validates :post_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'Please enter a valid postal code (e.g., 123-4567)' }
-      validates :send_region_id, numericality: { other_than: 1 } 
+      validates :post_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'は正確に入力してください' }
+      validates :send_region_id, numericality: { other_than: 1, message: "を選択してください"} 
       validates :municipality
       validates :address
-      validates :tel, length: { minimum: 10, maximum: 11, message: '10桁から11桁の数字を入力してください' }, format: { with: /\A\d{10,11}\z/, message: '有効な電話番号を入力してください' }
+      validates :tel, length: { minimum: 10, maximum: 11, message: 'は10桁から11桁の数字を入力してください' }, format: { with: /\A\d{10,11}\z/, message: 'は正確に入力してください' }
       validates :token
       validates :item_id
       validates :user_id

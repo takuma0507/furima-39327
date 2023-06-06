@@ -14,3 +14,15 @@ ja:
         send_region_id: 発送元の地域
         send_day_id: 発送までの日数
         price: 価格
+
+
+  activemodel:
+    attributes:
+      delivery_order:
+          post_code: 郵便番号
+          send_region_id: 都道府県
+          municipality: 市区町村
+          address: 番地
+          building_name: 建物名
+          tel: 電話番号
+          token: クレジットカード情報
