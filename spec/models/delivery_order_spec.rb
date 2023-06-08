@@ -48,7 +48,6 @@ RSpec.describe DeliveryOrder, type: :model do
         it '市区町村が空では購入できない' do
           @deliveryorder.municipality = ''
           @deliveryorder.valid?
-          # binding.pry
           expect(@deliveryorder.errors.full_messages).to include("市区町村を入力してください")
         end
   
